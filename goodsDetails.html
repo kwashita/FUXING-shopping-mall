@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <title>Document</title>
+  <style>
+    body {
+      background: #F2F2F2;
+    }
+
+    i {
+      text-decoration: none;
+    }
+
+    .cardImg {
+      height: 6.747rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
+      background: white;
+    }
+
+    .cardImg .img_title {
+      width: 8.187rem;
+      height: 5.147rem;
+      background: teal;
+      display: block;
+    }
+
+    .cardCon {
+      height: 2.267rem;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.4rem;
+      margin-bottom: 10px;
+    }
+
+    .cardCon .con_title {
+      width: 50%;
+      font-size: 0.387rem;
+      color: #333333;
+    }
+
+    .cardCon .con_sell {
+      text-align: end;
+      width: 50%;
+      font-size: 0.293rem;
+      color: #999999;
+    }
+
+    .cardCon .con_currency {
+      width: 50%;
+      font-size: 0.373rem;
+      color: #fa6d19;
+    }
+
+    .cardCon .con_currency .con_curAll {
+      font-size: 0.293rem;
+      color: #999999;
+      text-decoration: line-through;
+      padding-left: 0.35rem;
+    }
+
+    .cardCon .con_express {
+      text-align: end;
+      width: 50%;
+      font-size: 0.293rem;
+      color: #999999;
+    }
+
+    .cards {
+      height: 3.6rem;
+      background: white;
+      margin-bottom: 10px;
+    }
+
+    .cards .cards_classify {
+      overflow: hidden;
+      height: 2.667rem;
+      padding: 0.4rem;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .cards .cards_classify .class_le {
+      width: 1.16rem;
+      height: 100%;
+      float: left;
+      font-size: 0.3867rem;
+    }
+
+    .cards .cards_classify .class_ul {
+      width: 7.6rem;
+      height: 100%;
+      float: left;
+    }
+
+    .cards .cards_classify .class_ul .ul_li {
+      width: 2.2667rem;
+      height: 0.8rem;
+      border: 1px solid #bebebe;
+      border-radius: 6px;
+      text-align: center;
+      line-height: 0.8rem;
+      float: left;
+      margin-right: 0.35rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.3467rem;
+    }
+
+    .cards .cards_classify .class_ul .ul_li.liCur {
+      color: #fa6d19;
+      border: 1px solid #fa6d19;
+    }
+
+    .cards .cards_classify .class_ul .ul_li:nth-child(3) {
+      margin-right: 0rem;
+    }
+
+    .cards .cards_count {
+      padding: 0.18rem 0.4rem;
+
+    }
+
+    .cards .cards_count .count_name {
+      float: left;
+      font-size: 0.3867rem;
+    }
+
+    .cards .cards_count .count_num {
+      float: right;
+      width: 2.267rem;
+      height: 0.667rem;
+      border: solid 1px #bebebe;
+      border-radius: 6px;
+      font-size: 0.3867rem;
+      text-align: center;
+    }
+
+    .cards .cards_count .count_num .num_min {
+      background: url('./icons/min.png') no-repeat 50% 50%;
+      background-size: 50% auto;
+      float: left;
+      width: 0.613rem;
+      height: 100%;
+      border-right: 1px solid #bebebe;
+    }
+
+    .cards .cards_count .count_num .num_add {
+      background: url('./icons/add.png') no-repeat 50% 50%;
+      background-size: 50% 50%;
+      float: right;
+      width: 0.613rem;
+      height: 100%;
+      border-left: 1px solid #bebebe;
+    }
+
+    .cardDetails {
+      height: 10.84rem;
+      background: white;
+      font-size: 0.373rem;
+      margin-bottom: 12px;
+    }
+
+    .cardDetails .details_title {
+      height: 1.04rem;
+      border-bottom: 1px solid #bebebe;
+      line-height: 1.04rem;
+      padding-left: 0.4rem;
+    }
+
+    .cardDetails .details_content {
+      padding: 0.4rem;
+      word-break: break-all;
+
+    }
+
+    .cardFoot {
+      height: 1.333rem;
+      border: 1px solid orange;
+      background: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 0 0.4rem 0 0.4rem;
+    }
+
+    .cardFoot .foot_mount {
+      font-size: 0.373rem;
+      color: #666666;
+      line-height: 1.333rem;
+    }
+
+    .cardFoot .foot_mount .foot_count {
+      font-size: 0.4rem;
+      color: #fa6d19;
+      line-height: 1.333rem;
+      margin-right: 0.267rem;
+    }
+
+    .cardFoot .foot_fubi {
+      font-size: 0.32rem;
+      color: #999999;
+      line-height: 1.333rem;
+    }
+
+    .cardFoot .foot_exchange {
+      float: right;
+      width: 2.77333rem;
+      height: 1.0667rem;
+      background-color: #FF6200;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 1.0667rem;
+      color: white;
+      margin-top: 0.1331rem;
+    }
+    .balance{
+      width: 7.373rem;
+      height: 2.16rem;
+      background: rgba(0,0,0,0.6);
+      border-radius: 18px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -3.6865rem;
+      margin-top: -1.08rem;
+      color: white;
+      font-size: 0.4267rem;
+      padding: 0.4rem;
+      /* display: none; */
+    }
+    .balance .balance_a{
+      text-decoration: underline;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cardImg">
+    <img src="" class='img_title' alt="">
+  </div>
+  <div class="cardCon">
+    <span class='con_title'>爱奇艺黄金会员</span>
+    <span class='con_sell'>已售 102 件</span>
+    <span class='con_currency'>福币700
+      <i class='con_curAll'>1000</i>
+    </span>
+    <span class='con_express'>快递 免运费</span>
+  </div>
+  <div class="cards">
+    <div class="cards_classify">
+      <div class="class_le">规格</div>
+      <ul class='class_ul'>
+        <li class='ul_li liCur'>周卡</li>
+        <li class='ul_li'>月卡</li>
+        <li class='ul_li'>季卡</li>
+        <li class='ul_li'>半年卡</li>
+        <li class='ul_li'>年卡</li>
+      </ul>
+    </div>
+    <div class="cards_count">
+      <span class='count_name'>数量</span>
+      <div class="count_num">
+        <span class='num_min'></span>
+        <span class='num_nums'>1</span>
+        <span class='num_add'></span>
+      </div>
+    </div>
+  </div>
+  <div class="cardDetails">
+    <p class='details_title'>商品详情</p>
+    <div class="details_content">
+      海南福星相声社成立于2013年3月。由海口合众创富文化传媒公司发起，致力于弘扬民族文化、传播传统相声艺术，以培养相声人才、繁荣海南文化市场、服务百姓为己任的海南省首家相声演出团体，填补了海南省曲艺艺术的一项空白。 [1] 福星相声社现有演职人员13人，由享受国务院津贴的国家一级演员、文哏大师苏文茂先生的弟子武福星先生担任艺术指导，福星相声社于2013年6月15日开始首场公益演出，至今已为椰城观众带来了多场相声大会，得到了广大观众及有关部门的关注与认可，特区报、国际旅游岛商报、海南电视台等多家媒体给予了追踪报道。
+      [2]ssssSsssssssssssssSsssssssssssssSsssssssssssssSsssssssssssssSsssssssssssssSsssssssssssssSsssssssss
+    </div>
+  </div>
+  <div class="cardFoot">
+    <span class='foot_mount'>合计：福币
+      <i class='foot_count'>700</i>
+    </span>
+    <span class='foot_fubi'>(福币个数
+      <i class='foot_fubiCount'>3920</i> )</span>
+    <span class='foot_exchange'>立即兑换</span>
+  </div>
+  <!-- 商品详情不足提示 -->
+  <div class="balance">
+    福币不足，还差90福币，<a href="" class='balance_a'>快去凑福币吧！</a>
+  </div>
+  <script src='./js/jquery-1.8.3.min.js'></script>
+  <script src='./js/flexible.js'></script>
+  <script>
+  </script>
+</body>
+
+</html>

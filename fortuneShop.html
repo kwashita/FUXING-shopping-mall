@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/swiper-4.3.3.min.css">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+      font-family: MicrosoftYaHei;
+    }
+
+    .shop_top {
+      background: url('./icons/top.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.8rem;
+      height: 0.8rem;
+      position: fixed;
+      bottom: 0.533rem;
+      right: 0.2667rem;
+      display: none;
+      z-index: 99;
+    }
+    .shop_top #topAnchor{
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .black_gray {
+      height: 8px;
+      background: #F2F2F2;
+    }
+
+    .shop_title {
+      height: 2.13rem;
+      position: relative;
+      padding-top: 0.5333rem;
+      padding-right: 0.53rem;
+    }
+
+    .title_head {
+      width: 1.52rem;
+      height: 1.07rem;
+      float: left;
+      margin-right: 0.27rem;
+    }
+
+    .title_head .head_img {
+      width: 1.07rem;
+      height: 1.07rem;
+      border: 1px solid teal;
+      border-radius: 50%;
+      display: block;
+      float: right;
+    }
+
+    .title_content {
+      float: left;
+      width: 7.56rem;
+      height: 1.07rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+    }
+
+    .title_content .title_le {
+      width: 50%;
+      font-size: 0.373rem;
+    }
+
+    .title_content .title_le:nth-child(2),
+    .title_content .title_le:nth-child(4) {
+      text-align: end;
+    }
+
+    .title_content .title_right {
+      background: url('./icons/right.png') no-repeat;
+      background-size: 0.213rem 0.373rem;
+      width: 0.213rem;
+      height: 0.373rem;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+
+    .title_content .title_level {
+      background: url('./icons/level.png') no-repeat;
+      background-size: 0.28rem 0.28rem;
+      width: 0.28rem;
+      height: 0.28rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .title_content .title_le:nth-child(3),
+    .title_content .title_le:nth-child(4) {
+      font-size: 0.24rem;
+      color: #999999;
+    }
+
+    .title_content .title_le:nth-child(3) {
+      color: black;
+    }
+
+    .shop_banner {
+      width: 9.47rem;
+      position: relative;
+    }
+
+    .shop_banner .banner_outer {
+      height: 3.2rem;
+    }
+
+    .shop_banner .banner_img {
+      background: url('./icons/banner.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+
+    .shop_banner .banner-num {
+      width: 0.93rem;
+      height: 0.453rem;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      bottom: 0.27rem;
+      right: 0.27rem;
+      line-height: 0.453rem;
+      color: white;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .shop_classify {
+      height: 2.99rem;
+      margin-bottom: 10px;
+      padding: 0.53rem 0.587rem 0.4rem 0.587rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .shop_classify .class_title {
+      text-align: center;
+
+    }
+
+    .shop_classify .class_title img {
+      width: 1.6rem;
+      height: 1.6rem;
+      background-size: 100% 100%;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .shop_classify .class_title .lee {
+      width: 1.27rem;
+      height: 0.3067rem;
+      margin-top: 2rem;
+      font-size: 0.32rem;
+      font-weight: normal;
+      font-stretch: normal;
+      letter-spacing: 0px;
+      color: #888888;
+    }
+
+    .shop_radio {
+      height: 0.987rem;
+      /* padding: 0.293rem 0.4rem 0.293rem 0.4rem; */
+    }
+
+    .shop_radio .radio_title {
+      float: left;
+      font-size: 0.4rem;
+      line-height: 0.987rem;
+      margin-left: 0.4rem;
+      margin-right: 0.3rem;
+      background: linear-gradient(to right, #FFA600, #FF5816);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .shop_radio .radio_content {
+      float: left;
+      height: 0.4rem;
+      border-left: 3px solid #E3E3E3;
+      margin-top: 0.32rem;
+      padding-left: 0.3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop_radio .radio_content .radio_message {
+      background: url('./icons/message.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.32rem;
+      height: 0.293rem;
+      display: inline-block;
+    }
+
+    .shop_radio .radio_content .radio_li {
+      position: relative;
+      margin-bottom: 0.13rem;
+      line-height: 0.4rem;
+      color: #666666;
+
+    }
+
+    .shop_radio .radio_content .radio_span {
+      color: #666666;
+      font-size: 0.267rem;
+      margin-left: 0.16rem;
+      display: inline-block;
+    }
+
+    .shop_entertainment {
+      height: 5.693rem;
+    }
+
+    .shop_entertainment .enter_title {
+      height: 1.187rem;
+      line-height: 1.187rem;
+      padding-top: 0.32rem;
+    }
+
+    .shop_entertainment .enter_title .title_img {
+      float: left;
+      background-size: 100% 100%;
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-left: 0.267rem;
+      margin-right: 0.267rem;
+      vertical-align: middle;
+    }
+
+    .shop_entertainment .enter_title .enter_content {
+      float: left;
+      font-size: 0.4rem;
+      line-height: 0.453rem;
+      color: #723703;
+      /* background: linear-gradient(to right, #FF9481, #FF6276);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; */
+    }
+
+    .shop_entertainment .enter_title .enter_more {
+      width: 1.33rem;
+      height: 0.5333rem;
+      border-radius: 20px;
+      border: solid 1px #bebebe;
+      line-height: 0.5333rem;
+      text-align: center;
+      float: right;
+      color: #666666;
+      font-size: 0.27rem;
+      margin-right: 0.267rem;
+    }
+
+    .shop_entertainment .swiper-container {
+      height: 4.51rem;
+    }
+
+    .shop_entertainment .swiper-container .enter_show {
+      padding-left: 0.27rem;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_img {
+      position: relative;
+      width: 3.2rem !important;
+      height: 4.373rem;
+      /* padding: 0.267rem; */
+      margin-right: 0.267rem !important;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_img .enter_details {
+      padding: 0.267rem;
+      border: 1px solid #F2F2F2;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_img img {
+      width: 100%;
+      height: 1.6533rem;
+      background: green;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_img .enter_bg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_con {
+      font-size: 0.3rem;
+      color: #777777;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_le {
+      font-size: 0.28rem;
+      color: #ff2323;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_hu {
+      width: 2.4rem;
+      height: 0.64rem;
+      background-color: #fff2eb;
+      border-radius: 24px;
+      display: block;
+      text-align: center;
+      color: #fa6d19;
+      line-height: 0.64rem;
+      margin: 0 auto;
+      margin-top: 0.2rem;
+    }
+
+    .shop_entertainment .swiper-container .enter_show .enter_hu .hu_right {
+      background: url('./icons/inside.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.29333rem;
+      height: 0.29333rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: -0.1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="shop_top" href="#topAnchor"></a>
+  <div class="shop_title" id='topAnchor'>
+    <div class="title_head">
+      <img src="" class='head_img' alt="">
+    </div>
+    <div class="title_content">
+      <span class='title_le'>Zhang</span>
+      <span class='title_le'>3810福币
+        <i class='title_right'></i>
+      </span>
+      <span class='title_le'>
+        <i class='title_level'></i> 普通福星</span>
+      <span class='title_le'>赚福币&nbsp;换更多好礼品</span>
+    </div>
+  </div>
+
+  <div id='swiper1' class="swiper-container shop_banner">
+    <div class="swiper-wrapper banner_outer">
+      <div class="swiper-slide banner_img">1</div>
+      <div class="swiper-slide banner_img">2</div>
+      <div class="swiper-slide banner_img">3</div>
+    </div>
+    <spanw class="banner-num">1/3</spanw>
+  </div>
+  <div class="shop_classify">
+    <div class="class_title">
+      <img src="./icons/my.png" alt="">
+      <span class='lee'>我的福币</span>
+    </div>
+    <div class="class_title">
+      <img src="./icons/record.png" alt="">
+      <span class='lee'>兑换记录</span>
+    </div>
+    <div class="class_title">
+      <img src="./icons/exchange.png" alt="">
+      <span class='lee'>红包兑换</span>
+    </div>
+    <div class="class_title">
+      <img src="./icons/all.png" alt="">
+      <span class='lee'>全部商品</span>
+    </div>
+  </div>
+  <p class='black_gray'></p>
+  <div class="shop_radio">
+    <div class="radio_title">兑礼播报</div>
+    <ul class="radio_content">
+      <li class='radio_li'>
+        <i class='radio_message'></i>
+        恭喜用户*****1234兑换10.00元红包
+      </li>
+      <li class='radio_li'>
+        <i class='radio_message'></i>
+        恭喜用户*****456.00元红包
+      </li>
+      <li class='radio_li'>
+        <i class='radio_message'></i>
+        恭喜用户*****789.00元红包
+      </li>
+      <li class='radio_li'>
+        <i class='radio_message'></i>
+        恭喜用户*****666.00元红包
+      </li>
+    </ul>
+  </div>
+  <p class='black_gray'></p>
+  <div class="shop_entertainment">
+    <div class="enter_title">
+      <img src="./icons/audio.png" class='title_img' alt="">
+      <span class='enter_content'>影音娱乐</span>
+      <span class='enter_more'>更多</span>
+    </div>
+    <div id='swiper2' class="swiper-container">
+      <div class="swiper-wrapper enter_show">
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <p class='enter_con'>爱奇艺黄金黄金黄金会员卡</p>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+          <span class='enter_bg'></span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <p class='enter_con'>爱奇艺黄金会员卡</p>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <p class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </p>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class='black_gray'></p>
+  <!-- 123 -->
+  <div class="shop_entertainment">
+    <div class="enter_title">
+      <img src="./icons/buy.png" class='title_img' alt="">
+      <span class='enter_content'>购物休闲</span>
+      <span class='enter_more'>更多</span>
+    </div>
+    <div id='swiper3' class="swiper-container">
+      <div class="swiper-wrapper enter_show">
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class='black_gray'></p>
+  <!-- 456 -->
+  <div class="shop_entertainment">
+    <div class="enter_title">
+      <img src="./icons/make-up.png" class='title_img' alt="">
+      <span class='enter_content'>伊人美妆</span>
+      <span class='enter_more'>更多</span>
+    </div>
+    <div id='swiper4' class="swiper-container">
+      <div class="swiper-wrapper enter_show">
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+        <div class="swiper-slide enter_img">
+          <div class="enter_details">
+            <img src="" alt="">
+            <span class='enter_con'>爱奇艺黄金会员卡</span>
+            <p class='enter_le'>福币700</p>
+          </div>
+          <span class='enter_hu'>立即兑换
+            <i class='hu_right'></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src='./js/jquery-1.8.3.min.js'></script>
+  <script src='./js/flexible.js'></script>
+  <script src='./js///swiper-4.3.3.min.js'></script>
+  <script src='./js/fortuneShop.js'></script>
+</body>
+
+</html>

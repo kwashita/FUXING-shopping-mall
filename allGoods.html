@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <title>Document</title>
+  <style>
+    body {
+      background: #f2f2f2;
+      position: relative;
+    }
+
+    .shop_top {
+      background: url('./icons/top.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.8rem;
+      height: 0.8rem;
+      position: fixed;
+      bottom: 0.533rem;
+      right: 0.2667rem;
+      display: none;
+      z-index: 99;
+    }
+
+    .box {
+      width: 100%;
+      height: 1.0667rem;
+      margin-bottom: 0.2667rem;
+      background: white;
+      position: fixed;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: Center;
+    }
+
+    .box .searchImg {
+      background: url('./icons/search.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.347rem;
+      height: 0.347rem;
+      position: absolute;
+      left: 3.6rem;
+      top: 0.4rem;
+      vertical-align: middle;
+
+    }
+
+    .box .search {
+      width: 9.4667rem;
+      height: 0.8rem;
+      background-color: #f2f2f2;
+      border-radius: 6px;
+      outline: none;
+      border: 0;
+      /* padding-left: 42%; */
+      text-align: start;
+    }
+
+    .box .search::-ms-input-placeholder {
+      text-align: center;
+    }
+
+    .box .search::-webkit-input-placeholder {
+      text-align: center;
+    }
+
+    .details {
+      position: relative;
+      position: fixed;
+      top: 1.333rem;
+      left: 0;
+      margin-top: 0, .26667rem;
+    }
+
+    .aside {
+      width: 2.213rem;
+      display: flex;
+      flex-wrap: wrap;
+      position: fixed;
+      top: 1.333rem;
+      left: 0;
+    }
+
+    .aside a {
+      width: 2.213rem;
+      height: 1.333rem;
+      background: white;
+      margin-bottom: 1px;
+      text-align: center;
+      line-height: 1.333rem;
+    }
+
+    .content {
+      position: absolute;
+      top: 1.333rem;
+      left: 2.48rem;
+      width: 60%;
+    }
+
+    .all_content {
+      width: 7.253rem;
+      height: 2.187rem;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: solid 1px #dddddd;
+      margin-bottom: 0.1333rem;
+    }
+
+    .all_content .con_img {
+      float: left;
+      width: 2.93rem;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .all_content .con_img .serImg {
+      width: 2.667rem;
+      height: 1.6533rem;
+      background: skyblue;
+      display: block;
+    }
+
+    .all_content .con_word {
+      float: left;
+      width: 4.2rem;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-around;
+    }
+
+    .all_content .con_word .word_le {
+      font-size: 0.32rem;
+      color: #333;
+      width: 100%
+    }
+
+    .all_content .con_word .word_ci {
+      font-size: 0.24rem;
+      color: #ff2323;
+      width: 100%
+    }
+
+    .all_content .con_word .word_sp {
+      font-size: 0.46rem;
+      color: #ff2323;
+    }
+
+
+    .aside a.a_cur {
+      background: #f2f2f2;
+      color: #fa6d19;
+      position: relative;
+    }
+
+    .aside a .aside_sh {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0.08rem;
+      height: 0.8rem;
+      margin-top: 0.265rem;
+      background-image: linear-gradient(180deg,
+      rgba(255, 168, 0, 0.2) 0%,
+      rgba(252, 129, 17, 0.6) 50%,
+      rgba(248, 89, 33, 0.99) 99%,
+      #f85921 100%);
+      border-radius: 3px;
+      display: none;
+    }
+
+    #allgoods {
+      width: 2.213rem;
+      height: 1.333rem;
+      background: white;
+      margin-bottom: 1px;
+      text-align: center;
+      line-height: 1.333rem;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="shop_top" href="#topGoods"></a>
+  <div class="box" >
+    <i class='searchImg'></i>
+    <input type="text" class='search' placeholder="搜索商品">
+  </div>
+  <!--顶部导航栏-->
+  <div class="detail" id='topGoods'>
+    <span class='aside_sh'></span>
+  </div>
+  <div class='aside'>
+    <!-- <div class='a_cur' id='allgoods'>全部商品 -->
+    <a class='a_cur' href='#'>全部商品
+      <span class='aside_sh' style='display: block'></span>
+    </a>
+    <a href="#B" class='le'>为您推荐
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#C" class='le'>热度榜
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#D" class='le'>伊人美妆
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#E" class='le'>应季好物
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#F" class='le'>影音娱乐
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#G" class='le'>购物休闲
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#H" class='le'>餐饮美食
+      <span class='aside_sh'></span>
+    </a>
+    <a href="#I" class='le'>生活服务
+      <span class='aside_sh'></span>
+    </a>
+  </div>
+  <!--内容区-->
+  <div class="content">
+    <!-- <div class='con_div' id="A">
+        <div class="all_content">全部商品</div>
+        <div class="all_content">全部商品</div>
+        <div class="all_content">全部商品</div>
+        <div class="all_content">全部商品</div>
+      </div> -->
+    <div class='con_div' id="B">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='con_div' id="C">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+    <div class='con_div' id="D">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='con_div' id="E">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class='con_div' id="F">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class='con_div' id="G">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class='con_div' id="H">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class='con_div' id="I">
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+      <div class="all_content">
+        <div class="con_img">
+          <img src="" alt="" class='serImg'>
+        </div>
+        <div class="con_word">
+          <p class='word_le'>爱奇艺黄金会员卡</p>
+          <p class='word_ci'>福币
+            <span class='word_sp'>700</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+<script src='./js/jquery-1.8.3.min.js'></script>
+<script src='./js/flexible.js'></script>
+<script>
+
+  $('.aside').children('a').eq(0).click(function () {
+
+    $(this).addClass('a_cur').siblings().removeClass('a_cur');
+  })
+
+  $(function () {
+
+    $('.search').keyup(function () {
+      $('.searchImg').css('display', 'none');
+    })
+    var a_a = parseInt($('#A').height());
+    var a_b = parseInt($('#B').height());
+    var a_c = parseInt($('#C').height());
+    var a_d = parseInt($('#D').height());
+    var a_e = parseInt($('#E').height());
+    var a_f = parseInt($('#F').height());
+    var a_g = parseInt($('#G').height());
+    var a_h = parseInt($('#H').height());
+    var a_i = parseInt($('#I').height());
+
+    $('.content').height(a_b + a_c + a_d + a_e + a_f + a_g + a_h + a_i + a_h + 'px');
+    $('.le').click(function () {
+
+      $('html,body').animate({ scrollTop: ($($(this).attr('href')).offset().top - 40) }, 500);
+      $('.aside').children('a').eq(0).removeClass('a_cur');
+      // $(this).children('.aside_sh').css('display', 'block');
+      // $(this).siblings().children('.aside_sh').css('display', 'none');
+    });
+
+  });
+
+
+  $(function () {
+    $(window).scroll(function () {
+
+      $('.content .con_div').each(function () {
+        if ($('.aside').children('a').eq(0).hasClass('a_cur')) return false;
+        var target = parseInt($(this).offset().top - $(window).scrollTop() - 100);
+        var i = $(this).index();
+        if (target <= 0) {
+          $('.aside a').removeClass('a_cur');
+          $('.aside a').eq(i + 1).addClass('a_cur');
+          $('.aside a').eq(i + 1).children('.aside_sh').css('display', 'block');
+          $('.aside a').eq(i + 1).siblings().children('.aside_sh').css('display', 'none');
+        }
+      })
+    })
+  })
+
+  var startY, moveEndY;
+    document.addEventListener('touchstart', function (e) {
+      startY = e.touches[0].pageY;
+    }, { passive: false });
+    document.addEventListener('touchmove', function (e) {
+      moveEndY = e.touches[0].pageY;
+      var y = moveEndY - startY;
+      if (y > 0) {
+        $('.shop_top').fadeOut();
+      } else {
+        $('.shop_top').fadeIn();
+      }
+    }, { passive: false });
+  
+</script>
+
+</html>

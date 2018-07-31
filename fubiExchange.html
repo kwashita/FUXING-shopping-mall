@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <title>Document</title>
+  <style>
+    i {
+      text-decoration: none;
+    }
+
+    body {
+      background: #F2F2F2;
+    }
+
+    .exchange_top {
+      background: url('./icons/top.png') no-repeat;
+      background-size: 100% 100%;
+      width: 0.8rem;
+      height: 0.8rem;
+      position: fixed;
+      bottom: 0.533rem;
+      right: 0.2667rem;
+      display: none;
+      z-index: 99;
+    }
+
+    .fubi_title {
+      height: 1.2rem;
+      background: white;
+      color: #858585;
+      display: flex;
+      align-items: center;
+    }
+
+    .fubi_title .fubi_buy {
+      height: 100%;
+      text-align: center;
+      width: 33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+
+    }
+
+    .fubi_title .fubi_buy .buy_img {
+      background-image: url('./icons/buy1.png');
+      background-repeat: no-repeat;
+
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+    .buy_img2 {
+      background-image: url('./icons/buy2.png');
+      background-repeat: no-repeat;
+
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+
+    .fubi_title .fubi_send {
+      height: 100%;
+      text-align: center;
+      width: 33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      position: relative;
+
+
+    }
+
+    .fubi_title .fubi_li {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -0.335rem;
+      display: inline-block;
+      background: #E5E5E5;
+      width: 1px;
+      height: 0.67rem;
+    }
+
+    .fubi_title .fubi_send .send_img {
+      background-image: url('./icons/send1.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+
+    }
+
+    .send_img2 {
+      background-image: url('./icons/send2.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+    .fubi_title .fubi_exchange {
+      height: 100%;
+      text-align: center;
+      width: 33.9%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fubi_title .fubi_exchange .exchange_img {
+      background-image: url('./icons/exchange1.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+    .exchange_img2 {
+      background-image: url('./icons/exchange2.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 0.507rem;
+      height: 0.507rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+
+    .fubiCur {
+      border-bottom: 3px solid #F73D00;
+      color: #F73D00;
+    }
+
+    .all_content {
+      width: 9.47rem;
+      height: 2.187rem;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: solid 1px #dddddd;
+      margin-bottom: 0.1333rem;
+      margin: 0.267rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .all_content .con_img {
+      float: left;
+      width: 2.93rem;
+      height: 1.653rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .all_content .con_img .serImg {
+      width: 2.667rem;
+      height: 1.6533rem;
+      background: skyblue;
+      display: block;
+    }
+
+    .all_content .con_word {
+      float: left;
+      width: 6.1rem;
+      height: 1.653rem;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .all_content .con_word .word_le {
+      font-size: 0.32rem;
+      color: #333;
+      width: 100%;
+      margin-bottom: 0.8rem;
+    }
+
+    .all_content .con_word .word_ci {
+      font-size: 0.29333rem;
+      color: #999999;
+      margin-right: 2rem;
+    }
+
+    .all_content .con_word .word_sp {
+      font-size: 0.373rem;
+      color: #ff2323;
+      margin-top: -0.1rem;
+    }
+
+    .changeFubi {
+      display: none;
+    }
+
+    .fubiShow {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="exchange_top" href="#topExchange"></a>
+  <div class="fubi_title" id='topExchange'>
+    <div class="fubi_buy">
+      <i class='buy_img'></i>
+      自己购买
+      <span class='fubi_li'></span>
+    </div>
+    <div class="fubi_send">
+      <i class='send_img'></i>
+      赠送好友
+      <span class='fubi_li'></span>
+    </div>
+    <div class="fubi_exchange fubiCur">
+      <i class='exchange_img'></i>
+      福币兑礼
+    </div>
+  </div>
+  <div class="changeFubi buy">自己购买</div>
+  <div class="changeFubi send">赠送好友</div>
+  <div class="changeFubi fubiExchange fubiShow">
+    <div class="all_content">
+      <div class="con_img">
+        <img src="" alt="" class='serImg'>
+      </div>
+      <div class="con_word">
+        <p class='word_le'>爱奇艺黄金会员卡</p>
+        <span class='word_ci'>2018-12-11 12:21</span>
+        <span class='word_sp'>-700福币</span>
+      </div>
+    </div>
+    <div class="all_content">
+      <div class="con_img">
+        <img src="" alt="" class='serImg'>
+      </div>
+      <div class="con_word">
+        <p class='word_le'>爱奇艺黄金会员卡</p>
+        <span class='word_ci'>2018-12-11 12:21</span>
+        <span class='word_sp'>-700福币</span>
+      </div>
+    </div>
+    <div class="all_content">
+      <div class="con_img">
+        <img src="" alt="" class='serImg'>
+      </div>
+      <div class="con_word">
+        <p class='word_le'>爱奇艺黄金会员卡</p>
+        <span class='word_ci'>2018-12-11 12:21</span>
+        <span class='word_sp'>-700福币</span>
+      </div>
+    </div>
+  </div>
+
+  <script src='./js/jquery-1.8.3.min.js'></script>
+  <script src='./js/flexible.js'></script>
+  <script>
+    $('.fubi_title').children('div').click(function () {
+      var i = $(this).index();
+
+      if (i == 0) {
+        $('.fubi_buy').children('i').attr('class', 'buy_img2');
+        $('.fubi_send').children('i').attr('class', 'send_img');
+        $('.fubi_exchange').children('i').attr('class', 'exchange_img');
+      } else if (i == 1) {
+        $('.fubi_send').children('i').attr('class', 'send_img2');
+        $('.fubi_buy').children('i').attr('class', 'buy_img');
+        $('.fubi_exchange').children('i').attr('class', 'exchange_img');
+        
+      } else if (i == 2) {
+        $('.fubi_exchange').children('i').attr('class', 'exchange_img2');
+         $('.fubi_buy').children('i').attr('class', 'buy_img');
+        $('.fubi_send').children('i').attr('class', 'send_img');
+      }
+      $(this).addClass('fubiCur').siblings().removeClass('fubiCur');
+      $('.changeFubi').eq(i).addClass('fubiShow').siblings().removeClass('fubiShow');
+    });
+
+
+
+    var startY, moveEndY;
+    document.addEventListener('touchstart', function (e) {
+      startY = e.touches[0].pageY;
+    }, { passive: false });
+    document.addEventListener('touchmove', function (e) {
+      moveEndY = e.touches[0].pageY;
+      var y = moveEndY - startY;
+      if (y > 0) {
+        $('.exchange_top').fadeOut();
+      } else {
+        $('.exchange_top').fadeIn();
+      }
+    }, { passive: false });
+  </script>
+</body>
+
+</html>
