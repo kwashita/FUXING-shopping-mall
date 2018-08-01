@@ -13,7 +13,7 @@
       position: relative;
     }
 
-    .shop_top {
+    .allgoods_top {
       background: url('./icons/top.png') no-repeat;
       background-size: 100% 100%;
       width: 0.8rem;
@@ -189,8 +189,8 @@
 </head>
 
 <body>
-  <a class="shop_top" href="#topGoods"></a>
-  <div class="box" >
+  <a class="allgoods_top"></a>
+  <div class="box">
     <i class='searchImg'></i>
     <input type="text" class='search' placeholder="搜索商品">
   </div>
@@ -676,22 +676,24 @@
         }
       })
     })
+
+    var windowTop = 0;
+    $(document).scroll(function () {
+
+      var scrolls = $(this).scrollTop();
+      if (windowTop < scrolls && scrolls !== 0) {
+        $('.allgoods_top').fadeIn();
+      } else {
+        $('.allgoods_top').fadeOut();
+      }
+    });
+    $(".allgoods_top").click(function () {
+      $('html,body').animate({ scrollTop: 0 }, 700);
+    });
   })
 
-  var startY, moveEndY;
-    document.addEventListener('touchstart', function (e) {
-      startY = e.touches[0].pageY;
-    }, { passive: false });
-    document.addEventListener('touchmove', function (e) {
-      moveEndY = e.touches[0].pageY;
-      var y = moveEndY - startY;
-      if (y > 0) {
-        $('.shop_top').fadeOut();
-      } else {
-        $('.shop_top').fadeIn();
-      }
-    }, { passive: false });
-  
+
+
 </script>
 
 </html>

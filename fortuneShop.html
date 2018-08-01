@@ -27,7 +27,8 @@
       display: none;
       z-index: 99;
     }
-    .shop_top #topAnchor{
+
+    .shop_top #topAnchor {
       display: block;
       width: 100%;
       height: 100%;
@@ -343,7 +344,7 @@
 </head>
 
 <body>
-  <a class="shop_top" href="#topAnchor"></a>
+  <a class="shop_top"></a>
   <div class="shop_title" id='topAnchor'>
     <div class="title_head">
       <img src="" class='head_img' alt="">
@@ -690,7 +691,84 @@
   <script src='./js/jquery-1.8.3.min.js'></script>
   <script src='./js/flexible.js'></script>
   <script src='./js///swiper-4.3.3.min.js'></script>
-  <script src='./js/fortuneShop.js'></script>
+  <script>
+    window.onload = function () {
+      var swiper1 = new Swiper("#swiper1", {
+        loop: true
+      });
+
+      var swiper2 = new Swiper('#swiper2', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+      var swiper3 = new Swiper('#swiper3', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+      var swiper4 = new Swiper('#swiper4', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+      // 广播
+      setTimeout(() => {
+        setInterval("uplis()", 5000);
+      }, 3000);
+
+      $('.enter_img').mousedown(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).children('.enter_bg').fadeIn();
+      })
+      $('.enter_img').mouseup(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).children('.enter_bg').fadeOut();
+      })
+
+    };
+    var count = 0;
+    function uplis() {
+      if (count < $('.radio_li').length) {
+        $(".radio_li").eq(count).slideUp().next().slideDown();
+        count++;
+      }
+      if (count == $('.radio_li').length) {
+        count = 0;
+        $(".radio_content").children(':first').slideDown();
+      }
+    }
+    //回到顶部
+    var windowTop = 0;
+    $(document).scroll(function () {
+
+      var scrolls = $(this).scrollTop();
+      if (windowTop < scrolls && scrolls !== 0) {
+        $('.shop_top').fadeIn();
+      } else {
+        $('.shop_top').fadeOut();
+      }
+    });
+    $(".shop_top").click(function () {
+      $('html,body').animate({ scrollTop: 0 }, 700);
+    });
+
+
+  </script>
 </body>
 
 </html>

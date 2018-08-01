@@ -224,7 +224,7 @@
 </head>
 
 <body>
-  <a class="exchange_top" href="#topExchange"></a>
+  <a class="exchange_top"></a>
   <div class="fubi_title" id='topExchange'>
     <div class="fubi_buy">
       <i class='buy_img'></i>
@@ -237,7 +237,7 @@
       <span class='fubi_li'></span>
     </div>
     <div class="fubi_exchange fubiCur">
-      <i class='exchange_img'></i>
+      <i class='exchange_img2'></i>
       福币兑礼
     </div>
   </div>
@@ -290,10 +290,10 @@
         $('.fubi_send').children('i').attr('class', 'send_img2');
         $('.fubi_buy').children('i').attr('class', 'buy_img');
         $('.fubi_exchange').children('i').attr('class', 'exchange_img');
-        
+
       } else if (i == 2) {
         $('.fubi_exchange').children('i').attr('class', 'exchange_img2');
-         $('.fubi_buy').children('i').attr('class', 'buy_img');
+        $('.fubi_buy').children('i').attr('class', 'buy_img');
         $('.fubi_send').children('i').attr('class', 'send_img');
       }
       $(this).addClass('fubiCur').siblings().removeClass('fubiCur');
@@ -302,19 +302,21 @@
 
 
 
-    var startY, moveEndY;
-    document.addEventListener('touchstart', function (e) {
-      startY = e.touches[0].pageY;
-    }, { passive: false });
-    document.addEventListener('touchmove', function (e) {
-      moveEndY = e.touches[0].pageY;
-      var y = moveEndY - startY;
-      if (y > 0) {
-        $('.exchange_top').fadeOut();
-      } else {
+
+    var windowTop = 0;
+    $(document).scroll(function () {
+
+      var scrolls = $(this).scrollTop();
+      if (windowTop < scrolls && scrolls !== 0) {
         $('.exchange_top').fadeIn();
+      } else {
+        $('.exchange_top').fadeOut();
       }
-    }, { passive: false });
+    });
+    $(".exchange_top").click(function () {
+      $('html,body').animate({ scrollTop: 0 }, 700);
+    });
+
   </script>
 </body>
 
